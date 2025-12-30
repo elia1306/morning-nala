@@ -19,28 +19,27 @@
             --text-color: #2c3e50;
             --gold: #f1c40f;
             
-            /* 預設字型變數 */
-            --font-hand: 'Caveat', cursive;  /* 內文與按鈕 */
-            --font-title: 'Barriecito', cursive; /* 標題固定 */
+            --font-hand: 'Caveat', cursive;
+            --font-title: 'Barriecito', cursive;
         }
 
         body {
             font-family: var(--font-hand);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            /* 減少上方 Padding，讓內容往上提 */
+            padding: 10px 20px; 
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             padding-bottom: calc(20px + env(safe-area-inset-bottom));
 
-            /* === 背景設定 === */
             background-color: var(--bg-color);
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.15) 0%, transparent 20%);
-            /* background-image: url('bg.png'); */ /* 自訂背景請解開這行 */
+            /* background-image: url('bg.png'); */
             
             background-size: cover;
             background-position: center;
@@ -51,21 +50,22 @@
         header { 
             width: 100%; max-width: 500px;
             display: flex; flex-direction: column; align-items: center;
-            margin-bottom: 20px;
+            /* 減少標題與卡片的距離 */
+            margin-bottom: 10px; 
         }
 
         h1 {
             font-family: var(--font-title);
-            font-size: 3.2rem;
+            /* ⬇️ 字型縮小，適配手機寬度 */
+            font-size: 2.5rem; 
             color: var(--primary-dark);
-            text-shadow: 3px 3px 0px var(--neon-pink);
-            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 0px var(--neon-pink);
+            margin: 5px 0; /* 減少標題上下空白 */
             letter-spacing: 1px;
             line-height: 1.1;
             text-align: center;
         }
 
-        /* 📊 新增：狀態列 (星星與時鐘並排) */
         .status-bar {
             display: flex;
             justify-content: center;
@@ -75,34 +75,28 @@
 
         .stat-item {
             background: white;
-            padding: 8px 18px;
+            /* ⬇️ 縮小內距，讓狀態列更扁平 */
+            padding: 5px 15px; 
             border-radius: 20px;
-            font-family: 'Fredoka', sans-serif; /* 數字保持易讀 */
-            font-size: 1.2rem;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem; /* 字稍微小一點 */
             display: flex; align-items: center; gap: 8px;
-            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
         }
 
-        /* 星星樣式 */
-        .stat-stars {
-            border: 2px solid var(--gold);
-            color: #f39c12;
-        }
-
-        /* 時鐘樣式 */
-        .stat-clock {
-            border: 2px solid var(--neon-pink);
-            color: var(--primary);
-        }
+        .stat-stars { border: 2px solid var(--gold); color: #f39c12; }
+        .stat-clock { border: 2px solid var(--neon-pink); color: var(--primary); }
 
         .card {
             background: var(--card-bg);
             width: 100%; max-width: 500px;
             border-radius: 20px;
-            padding: 25px 20px;
-            margin-bottom: 20px;
+            /* ⬇️ 縮小卡片內距 */
+            padding: 15px 15px; 
+            /* 減少卡片與按鈕的距離 */
+            margin-bottom: 15px; 
             border: 3px solid var(--primary);
-            box-shadow: 6px 6px 0px rgba(155, 89, 182, 0.2);
+            box-shadow: 5px 5px 0px rgba(155, 89, 182, 0.2);
             position: relative;
             backdrop-filter: blur(5px);
         }
@@ -110,9 +104,10 @@
         .task-list { list-style: none; padding: 0; margin: 0; }
 
         .task-item {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            padding: 8px;
+            /* ⬇️ 縮小任務文字，確保一頁能顯示更多 */
+            font-size: 1.4rem; 
+            margin-bottom: 10px; /* 減少項目間距 */
+            padding: 5px;
             border-bottom: 2px dashed #ddd;
             display: flex; align-items: center;
             cursor: pointer;
@@ -127,10 +122,11 @@
         }
 
         .checkbox {
-            width: 28px; height: 28px;
+            /* 稍微縮小勾選框 */
+            width: 24px; height: 24px; 
             border: 2px solid var(--primary);
             border-radius: 50%;
-            margin-right: 15px;
+            margin-right: 12px;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
             background: white;
@@ -138,81 +134,83 @@
 
         .task-item.checked { text-decoration: line-through; color: #aaa; }
         .task-item.checked .checkbox { background: var(--primary); }
-        .task-item.checked .checkbox::after { content: '✔'; color: white; font-size: 1.2rem; }
+        .task-item.checked .checkbox::after { content: '✔'; color: white; font-size: 1rem; }
 
         .btn-ready {
             background: linear-gradient(135deg, var(--primary), var(--neon-pink));
             color: white;
-            /* [修改] 這裡改成使用變數，所以會跟著選單改變 */
-            font-family: var(--font-hand); 
-            font-size: 2.2rem;
+            font-family: var(--font-hand);
+            /* ⬇️ 按鈕稍微縮小，確保不出現在第二頁 */
+            font-size: 1.8rem; 
             border: none;
-            padding: 15px 0;
+            padding: 10px 0;
             width: 100%; max-width: 500px;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 0 var(--primary-dark);
+            box-shadow: 0 5px 0 var(--primary-dark);
             transition: transform 0.1s;
             text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
             letter-spacing: 1px;
+            margin-bottom: 20px; /* 與下方統計保持距離 */
         }
-        .btn-ready:active { transform: translateY(6px); box-shadow: 0 0 0; }
+        .btn-ready:active { transform: translateY(4px); box-shadow: 0 0 0; }
 
+        /* 以下為需滑動才看到的區域 */
         .weekly-stats {
             width: 100%; max-width: 500px;
             background: white;
             border-radius: 15px;
-            padding: 15px 20px;
-            margin-top: 25px;
+            padding: 10px 20px;
+            margin-top: 10px;
             border: 2px solid var(--neon-blue);
             box-shadow: 4px 4px 0 rgba(139, 233, 253, 0.5);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .weekly-label { font-weight: bold; color: #555; font-size: 1.2rem; }
-        .weekly-value { font-family: var(--font-title); font-size: 2.2rem; color: var(--primary); }
+        .weekly-label { font-weight: bold; color: #555; font-size: 1.1rem; }
+        .weekly-value { font-family: var(--font-title); font-size: 1.8rem; color: var(--primary); }
 
         .calendar-container {
             width: 100%; max-width: 500px;
             background: white;
             border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
+            padding: 15px;
+            margin-top: 15px;
             border: 2px solid #ddd;
         }
-        .cal-header { text-align: center; font-weight: bold; font-size: 1.3rem; margin-bottom: 15px; color: var(--primary-dark); }
-        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .cal-header { text-align: center; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-dark); }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
         
         .cal-day {
             aspect-ratio: 1/1;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             background: #f9f9f9;
-            border-radius: 8px;
-            font-size: 1rem; color: #aaa;
+            border-radius: 6px;
+            font-size: 0.8rem; color: #aaa;
             font-family: 'Fredoka', sans-serif;
         }
         
         .cal-day.done { background: #e1bee7; color: var(--primary-dark); border: 1px solid var(--primary); font-weight: bold; }
         .cal-day.perfect { background: var(--neon-pink); color: white; border: 1px solid #ff4081; box-shadow: 0 0 5px var(--neon-pink);}
         
-        .cal-star-num { font-size: 0.7rem; margin-top: 2px; }
+        .cal-star-num { font-size: 0.6rem; margin-top: 1px; }
         .cal-day.today { border: 2px dashed var(--primary); }
 
         .footer-tools { 
-            margin-top: 30px; 
+            margin-top: 20px; 
             width: 100%; max-width: 500px;
             display: flex; justify-content: space-between; align-items: center;
         }
         .reset-link { color: #ccc; text-decoration: underline; cursor: pointer; font-size: 0.9rem; font-family: sans-serif; }
         
         .font-selector {
-            padding: 8px 12px;
+            padding: 5px 10px;
             border: 2px solid var(--primary);
-            border-radius: 12px;
+            border-radius: 10px;
             background: white;
             color: var(--primary-dark);
             font-family: var(--font-hand);
-            font-size: 1.1rem;
+            font-size: 1rem;
             outline: none;
             cursor: pointer;
         }
@@ -336,14 +334,13 @@
         
         checkTuesday();
         loadData();
-        loadFont(); // 載入字型設定
+        loadFont();
         
         setInterval(() => {
             const now = new Date();
             clockEl.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' });
         }, 1000);
 
-        // 字型切換邏輯
         fontSelector.addEventListener('change', (e) => {
             const newFont = e.target.value;
             document.documentElement.style.setProperty('--font-hand', newFont);
@@ -420,12 +417,10 @@
             const data = JSON.parse(localStorage.getItem('hunter_data') || "{}");
             const now = new Date();
             
-            // Total Stars
             let total = 0;
             Object.values(data).forEach(day => total += (day.stars || 0));
             totalStarsEl.textContent = total;
 
-            // Weekly Stats
             let weeklyTotal = 0;
             const dayOfWeek = now.getDay(); 
             const sunday = new Date(now);
