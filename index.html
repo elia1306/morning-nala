@@ -3,185 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>K-Pop Hunter Routine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;600&family=Indie+Flower&family=Patrick+Hand&family=Satisfy&display=swap" rel="stylesheet">
+    <title>~ Good Morning Nala ~</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;600&family=Indie+Flower&family=Patrick+Hand&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
         :root {
-            --primary: #9b59b6; 
-            --primary-dark: #7b1fa2;
-            --neon-pink: #ff79c6; 
-            --neon-purple: #bd93f9; 
-            --bg-color: #f8f0fc; 
-            --text-color: #4a235a;
-            --accent: #f1c40f; 
-            --current-font: 'Indie Flower', cursive;
+            /* 💜 K-Pop 應援色盤 */
+            --primary: #9b59b6;       /* 基底紫 */
+            --primary-dark: #8e44ad;  /* 深紫 */
+            --neon-pink: #ff79c6;     /* 霓虹粉 */
+            --neon-blue: #8be9fd;     /* 電光藍 */
+            --bg-color: #f8f0fc;      /* 淡紫背景 */
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2c3e50;
+            --gold: #f1c40f;
+            
+            --font-hand: 'Indie Flower', cursive;
+            --font-bold: 'Fredoka', sans-serif;
         }
 
         body {
-            font-family: var(--current-font);
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 10% 20%, rgba(189, 147, 249, 0.1) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.1) 0%, transparent 20%);
+            font-family: var(--font-hand);
             color: var(--text-color);
             margin: 0;
-            padding: 10px; 
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            /* 確保底部內容不會被 iPhone 的 Home Bar 擋住 */
-            padding-bottom: calc(10px + env(safe-area-inset-bottom));
-            transition: font-family 0.3s ease;
+            padding-bottom: calc(20px + env(safe-area-inset-bottom));
+
+            /* ==========================================================
+               🎨 【背景設定區 (Background Config)】
+               ========================================================== */
+            
+            /* 1. 背景底色 (淡紫色) */
+            background-color: var(--bg-color);
+
+            /* 2. 背景圖片 (若要用自己的圖，請改檔名，例如 'idol.jpg') */
+            /* 預設: 幾何圖形裝飾 */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.15) 0%, transparent 20%);
+            
+            /* 若您上傳了照片，請把下面這行取消註解 (刪除前面的 //) */
+            /* background-image: url('bg.png'); */
+
+            /* 3. 圖片顯示設定 */
+            background-size: cover;       /* 填滿畫面 */
+            background-position: center;  /* 居中 */
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* 固定不捲動 */
         }
 
-        .header-container { width: 100%; max-width: 450px; display: flex; flex-direction: column; align-items: center; margin-bottom: 10px; }
-        .hunter-banner-svg { width: 80%; height: auto; margin-bottom: 5px; filter: drop-shadow(0 4px 2px rgba(189, 147, 249, 0.3)); }
-        .header-controls { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-top: 5px; gap: 10px; }
-        
-        h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); margin: 0; color: var(--primary-dark); text-shadow: 2px 2px 0px var(--neon-pink); text-align: center; line-height: 1.2; }
-        .clock-badge { background: white; padding: 5px 10px; border-radius: 20px; font-size: 1rem; border: 2px solid var(--neon-purple); font-weight: bold; white-space: nowrap; }
-        .font-selector { padding: 5px; border-radius: 12px; border: 2px solid var(--primary); background: white; color: var(--primary-dark); font-family: var(--current-font); font-size: 0.9rem; max-width: 60%; }
-
-        .stars-display {
-            background: white; padding: 5px 15px; border-radius: 50px; font-size: 1.5rem; margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px; border: 2px solid var(--neon-pink);
+        /* 標題與 Header */
+        header { 
+            width: 100%; max-width: 500px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px;
         }
-        .star-icon { color: var(--accent); }
 
+        h1 {
+            font-family: 'Bangers', cursive; /* 漫畫英雄字體 */
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            text-shadow: 2px 2px 0px var(--neon-pink);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .clock-badge {
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: var(--font-bold);
+            font-size: 1.2rem;
+            color: var(--primary);
+            border: 2px solid var(--neon-pink);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+
+        /* 總星星顯示 (右上角) */
+        .total-stars-display {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            display: flex; align-items: center; gap: 5px;
+            border: 2px solid var(--gold);
+            font-family: var(--font-bold);
+            color: #f39c12;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        /* ✨ 任務卡片 */
         .card {
-            background: rgba(255, 255, 255, 0.9); width: 100%; max-width: 450px; border-radius: 15px; padding: 15px; margin-bottom: 20px;
-            border: 2px solid var(--neon-purple); box-shadow: 4px 4px 0px rgba(155, 89, 182, 0.2); backdrop-filter: blur(5px);
+            background: var(--card-bg);
+            width: 100%; max-width: 500px;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+            box-shadow: 6px 6px 0px rgba(155, 89, 182, 0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
         }
 
-        .task-list { list-style: none; padding: 0; margin: 0; text-align: left; }
-        .task-item { font-size: clamp(1.1rem, 4vw, 1.4rem); margin-bottom: 10px; padding: 10px 5px; border-bottom: 1px dashed var(--primary-light); display: flex; align-items: center; cursor: pointer; transition: all 0.2s; line-height: 1.3; }
-        .task-item:last-child { border-bottom: none; }
-        .task-item.special-tuesday { background-color: #e8f4fd; border-radius: 10px; border-bottom: none; color: #2980b9; }
+        .task-list { list-style: none; padding: 0; margin: 0; }
 
-        .custom-checkbox { width: 22px; height: 22px; border: 2px solid var(--primary); border-radius: 50%; margin-right: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .task-item.checked { color: #b39ddb; text-decoration: line-through; }
-        .task-item.checked .custom-checkbox { background-color: var(--primary); }
-        .task-item.checked .custom-checkbox::after { content: '✔'; color: white; font-size: 0.9rem; }
+        .task-item {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-bottom: 2px dashed #ddd;
+            display: flex; align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        /* 週二特殊任務樣式 */
+        .task-item.special {
+            background: #e8f4fd;
+            border-radius: 10px;
+            border-bottom: none;
+            color: #2980b9;
+        }
 
+        .checkbox {
+            width: 28px; height: 28px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            background: white;
+        }
+
+        .task-item.checked { text-decoration: line-through; color: #aaa; }
+        .task-item.checked .checkbox { background: var(--primary); }
+        .task-item.checked .checkbox::after { content: '✔'; color: white; font-size: 1.2rem; }
+
+        /* 🔥 Ready 按鈕 */
         .btn-ready {
-            background: linear-gradient(45deg, var(--primary), var(--neon-pink)); color: white; font-family: var(--current-font); font-size: 1.5rem;
-            border: none; padding: 12px 0; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 0 var(--primary-dark);
-            width: 100%; max-width: 450px; margin-top: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--neon-pink));
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            border: none;
+            padding: 15px 0;
+            width: 100%; max-width: 500px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 var(--primary-dark);
+            transition: transform 0.1s;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+            letter-spacing: 1px;
         }
-        .btn-ready:active { transform: translateY(4px); box-shadow: 0 0 0 var(--primary-dark); }
+        .btn-ready:active { transform: translateY(6px); box-shadow: 0 0 0; }
 
-        /* 已移除 .footer-mascot-svg 樣式 */
+        /* 📊 每週統計卡片 */
+        .weekly-stats {
+            width: 100%; max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-top: 25px;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 4px 4px 0 rgba(139, 233, 253, 0.5);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .weekly-label { font-family: var(--font-bold); color: #555; font-size: 1.1rem; }
+        .weekly-value { font-family: 'Bangers', cursive; font-size: 2rem; color: var(--primary); }
 
-        .history-container { margin-top: 20px; width: 100%; max-width: 450px; font-size: 1rem; }
-        .history-title { color: var(--primary-dark); border-bottom: 2px solid var(--neon-pink); margin-bottom: 8px; }
-        .history-list { list-style: none; padding: 0; }
-        .history-item { display: flex; justify-content: space-between; background: rgba(255,255,255,0.6); padding: 8px 12px; margin-bottom: 5px; border-radius: 8px; color: #777; font-size: 0.9rem; }
-        .clear-link { color: var(--neon-purple); font-size: 0.85rem; text-decoration: underline; cursor: pointer; display: block; margin-top: 10px; text-align: center;}
+        /* 📅 月曆樣式 */
+        .calendar-container {
+            width: 100%; max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+        }
+        .cal-header { text-align: center; font-family: var(--font-bold); font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-dark); }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         
-        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; display: none; }
-        .result-message { text-align: center; display: none; }
+        .cal-day {
+            aspect-ratio: 1/1;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 0.9rem; color: #aaa;
+            position: relative;
+        }
         
-        .rank-s { color: #f1c40f; text-shadow: 1px 1px 0 #e67e22; } /* Gold */
-        .rank-a { color: #e74c3c; } /* Red */
-        .rank-b { color: #3498db; } /* Blue */
-        .rank-c { color: #7f8c8d; } /* Gray */
+        /* 一般完成 (1-19星) */
+        .cal-day.done { 
+            background: #e1bee7; color: var(--primary-dark); 
+            border: 1px solid var(--primary); font-weight: bold; 
+        }
+        /* S級完美達成 (20星以上) */
+        .cal-day.perfect { 
+            background: var(--neon-pink); color: white; 
+            border: 1px solid #ff4081; 
+            box-shadow: 0 0 5px var(--neon-pink);
+        }
+        
+        .cal-star-num { font-size: 0.7rem; margin-top: 2px; }
+        .cal-day.today { border: 2px dashed var(--primary); }
+
+        /* 結果視窗 (完成後顯示) */
+        .result-overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 100;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        .result-box {
+            background: white; padding: 30px; border-radius: 20px; text-align: center;
+            width: 90%; max-width: 400px;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .rank-badge { font-family: 'Bangers', cursive; font-size: 4rem; margin: 10px 0; }
+        .rank-s { color: var(--gold); text-shadow: 2px 2px 0 #d35400; }
+        .rank-a { color: var(--neon-pink); }
+        .rank-b { color: var(--neon-blue); }
+        
+        .btn-close { 
+            background: #333; color: white; border: none; padding: 10px 30px; 
+            border-radius: 20px; font-size: 1.2rem; cursor: pointer; margin-top: 20px; 
+        }
+
+        .footer-tools { margin-top: 30px; text-align: center; width: 100%; }
+        .reset-link { color: #ccc; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
+
+        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; display: none; }
+
+        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <svg class="hunter-banner-svg" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff79c6;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <path d="M20,40 Q50,10 100,30 Q130,5 150,35 Q170,5 200,30 Q250,10 280,40" stroke="url(#grad1)" stroke-width="3" fill="none" opacity="0.6"/>
-            <circle cx="150" cy="40" r="25" fill="#f8f0fc" stroke="url(#grad1)" stroke-width="4"/>
-            <path d="M150,15 L150,65" stroke="url(#grad1)" stroke-width="5" stroke-linecap="round"/>
-            <path d="M135,40 L165,40" stroke="url(#grad1)" stroke-width="5" stroke-linecap="round"/>
-            <circle cx="150" cy="40" r="10" fill="#ff79c6"/>
-            <text x="142" y="47" font-family="Arial" font-size="20" fill="white">⚡</text>
-            <text x="80" y="60" font-size="20">🎵</text>
-            <text x="220" y="25" font-size="20">✨</text>
-        </svg>
-
-        <h1>Hunter Routine</h1>
-
-        <div class="header-controls">
-            <select id="font-selector" class="font-selector">
-                <option value="'Indie Flower', cursive">Indie</option>
-                <option value="'Fredoka', sans-serif">Fredoka</option>
-                <option value="'Bangers', cursive">Bangers</option>
-                <option value="'Patrick Hand', cursive">Patrick</option>
-                <option value="'Satisfy', cursive">Satisfy</option>
-            </select>
-            <div class="clock-badge" id="clock">--:--</div>
+    <header>
+        <div>
+            <h1>Hunter Routine</h1>
+            <div class="total-stars-display">
+                <span>⭐</span>
+                <span id="total-stars">0</span>
+            </div>
         </div>
-    </div>
-
-    <div class="stars-display">
-        <span class="star-icon">✨</span>
-        <span id="star-count">0</span>
-    </div>
+        <div class="clock-badge" id="clock">--:--</div>
+    </header>
 
     <div class="card" id="main-card">
-        <ul class="task-list" id="task-list-container">
+        <ul class="task-list" id="task-list">
             <li class="task-item" onclick="toggleCheck(this)">
-                <div class="custom-checkbox"></div>
-                Toilet, Brush Teeth, Change 🛁
+                <div class="checkbox"></div>
+                <span>Toilet & Brush Teeth 🛁</span>
             </li>
             <li class="task-item" onclick="toggleCheck(this)">
-                <div class="custom-checkbox"></div>
-                Breakfast, Backpack, Lunch Bag 🎒
-            </li>
-            
-            <li class="task-item" onclick="toggleCheck(this)">
-                <div class="custom-checkbox"></div>
-                Chinese Medicine 🍵
+                <div class="checkbox"></div>
+                <span>Change Clothes 👗</span>
             </li>
             <li class="task-item" onclick="toggleCheck(this)">
-                <div class="custom-checkbox"></div>
-                Everything is ready! 💖
+                <div class="checkbox"></div>
+                <span>Breakfast & Bag 🎒</span>
+            </li>
+            <li class="task-item" onclick="toggleCheck(this)">
+                <div class="checkbox"></div>
+                <span>Chinese Medicine 🍵</span>
+            </li>
+            <li class="task-item" onclick="toggleCheck(this)">
+                <div class="checkbox"></div>
+                <span>Everything Ready! ✨</span>
             </li>
         </ul>
     </div>
 
-    <div class="card result-message" id="result-card">
-        <h2 id="result-title" style="font-size: 2rem; margin:10px 0;"></h2>
-        <p id="result-time" style="font-size: 1.2rem; color:#888;"></p>
-        <p id="result-desc" style="font-size: 1.1rem; margin-top:15px; font-weight:bold;"></p>
-        <button class="btn-ready" onclick="location.reload()" style="font-size: 1.3rem; margin-top:15px; background: linear-gradient(45deg, #bd93f9, #9b59b6);">Reload System</button>
+    <button class="btn-ready" onclick="finishRoutine()">I'm Ready!</button>
+
+    <div class="weekly-stats">
+        <span class="weekly-label">Weekly Score (本週戰績)</span>
+        <span class="weekly-value" id="weekly-score">0 ⭐</span>
     </div>
 
-    <button class="btn-ready" id="action-btn" onclick="finishRoutine()">I'm Ready!</button>
+    <div class="calendar-container">
+        <div class="cal-header" id="cal-month-title">Calendar</div>
+        <div class="cal-grid" id="cal-grid"></div>
+    </div>
 
-    <div class="history-container">
-        <div class="history-title">Mission Logs</div>
-        <ul class="history-list" id="history-list"></ul>
-        <div class="clear-link" onclick="clearHistory()">Clear Logs</div>
+    <div class="footer-tools">
+        <span class="reset-link" onclick="clearData()">Reset All Data</span>
+    </div>
+
+    <div class="result-overlay" id="result-overlay">
+        <div class="result-box">
+            <div id="result-rank" class="rank-badge">S</div>
+            <h2 id="result-title">Perfect!</h2>
+            <p id="result-desc" style="font-size: 1.2rem; color:#666;">+20 Stars</p>
+            <p id="result-time" style="color:#aaa; margin-top:5px;">Time: 06:40</p>
+            <button class="btn-close" onclick="location.reload()">See ya tomorrow!</button>
+        </div>
     </div>
 
     <canvas id="confetti-canvas"></canvas>
 
     <script>
+        // DOM Elements
         const clockEl = document.getElementById('clock');
-        const starCountEl = document.getElementById('star-count');
-        const mainCard = document.getElementById('main-card');
-        const resultCard = document.getElementById('result-card');
-        const resultTitle = document.getElementById('result-title');
-        const resultTime = document.getElementById('result-time');
-        const resultDesc = document.getElementById('result-desc');
-        const actionBtn = document.getElementById('action-btn');
-        const historyList = document.getElementById('history-list');
-        const fontSelector = document.getElementById('font-selector');
-        const taskListContainer = document.getElementById('task-list-container');
-
-        loadData();
-        checkTuesday();
-        initFontSwitcher();
+        const taskList = document.getElementById('task-list');
+        const totalStarsEl = document.getElementById('total-stars');
+        const weeklyScoreEl = document.getElementById('weekly-score');
+        const calGrid = document.getElementById('cal-grid');
+        const calTitle = document.getElementById('cal-month-title');
+        const resultOverlay = document.getElementById('result-overlay');
         
+        // Init
+        checkTuesday();
+        loadData();
+        
+        // Clock Loop
         setInterval(() => {
             const now = new Date();
             clockEl.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' });
@@ -191,130 +335,143 @@
             el.classList.toggle('checked');
         }
 
+        // 週二自動加泳衣
         function checkTuesday() {
             const now = new Date();
-            const dayOfWeek = now.getDay(); 
-            if (dayOfWeek === 2) { 
-                const tuesdayItem = document.createElement('li');
-                tuesdayItem.className = 'task-item special-tuesday';
-                tuesdayItem.setAttribute('onclick', 'toggleCheck(this)');
-                tuesdayItem.innerHTML = `<div class="custom-checkbox"></div>Swimsuit 🩱 (It's Tuesday!)`;
-                const medicineItem = taskListContainer.children[2];
-                taskListContainer.insertBefore(tuesdayItem, medicineItem);
+            if (now.getDay() === 2) { // 2 is Tuesday
+                const li = document.createElement('li');
+                li.className = 'task-item special';
+                li.setAttribute('onclick', 'toggleCheck(this)');
+                li.innerHTML = `<div class="checkbox"></div><span>Swimsuit 🩱 (Tue)</span>`;
+                // Insert before medicine (2nd to last)
+                const items = taskList.children;
+                taskList.insertBefore(li, items[items.length - 2]);
             }
         }
 
-        function initFontSwitcher() {
-            const savedFont = localStorage.getItem('hunter_font') || "'Indie Flower', cursive";
-            document.documentElement.style.setProperty('--current-font', savedFont);
-            fontSelector.value = savedFont;
-            fontSelector.addEventListener('change', (e) => {
-                const selectedFont = e.target.value;
-                document.documentElement.style.setProperty('--current-font', selectedFont);
-                localStorage.setItem('hunter_font', selectedFont);
-            });
-        }
-
+        // 完成邏輯
         function finishRoutine() {
             const now = new Date();
-            const target645 = new Date(); target645.setHours(6, 45, 0); 
+            const target645 = new Date(); target645.setHours(6, 45, 0);
             const target650 = new Date(); target650.setHours(6, 50, 0);
             const target651 = new Date(); target651.setHours(6, 51, 0);
-
-            const timeStr = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' });
-            let starsEarned = 0;
+            
+            let stars = 0;
+            let rank = "";
+            let title = "";
             let rankClass = "";
-            let titleText = "";
-            let descText = "";
 
             if (now < target645) {
-                starsEarned = 20;
-                titleText = "GODLIKE! (S+) ⚡️";
-                rankClass = "rank-s";
-                descText = "+20 Stars! Unstoppable!";
-                startConfetti();
-            } else if (now >= target645 && now < target650) {
-                starsEarned = 15;
-                titleText = "Amazing! (A) 🔥";
-                rankClass = "rank-a";
-                descText = "+15 Stars! Fast!";
-                startConfetti();
-            } else if (now >= target650 && now < target651) {
-                starsEarned = 10;
-                titleText = "Great! (B) ✨";
-                rankClass = "rank-b";
-                descText = "+10 Stars! You made it!";
-                startConfetti();
+                stars = 20; rank = "S"; title = "GODLIKE!"; rankClass = "rank-s";
+            } else if (now < target650) {
+                stars = 15; rank = "A"; title = "Amazing!"; rankClass = "rank-a";
+            } else if (now < target651) {
+                stars = 10; rank = "B"; title = "Good Job!"; rankClass = "rank-b";
             } else {
-                starsEarned = 0;
-                titleText = "Mission Over (C) 🛡️";
-                rankClass = "rank-c";
-                descText = "Too late... 0 Stars. Try again tomorrow!";
+                stars = 0; rank = "C"; title = "Try Again!"; rankClass = "rank-c";
             }
+
+            // Show Result
+            document.getElementById('result-rank').textContent = rank;
+            document.getElementById('result-rank').className = "rank-badge " + rankClass;
+            document.getElementById('result-title').textContent = title;
+            document.getElementById('result-desc').textContent = `+${stars} Stars`;
+            document.getElementById('result-time').textContent = `Finished at ${now.toLocaleTimeString('en-US', {hour12:false, hour:'2-digit', minute:'2-digit'})}`;
             
-            mainCard.style.display = 'none';
-            actionBtn.style.display = 'none';
-            resultCard.style.display = 'block';
+            resultOverlay.style.display = 'flex';
+            if (stars > 0) startConfetti();
 
-            resultTitle.textContent = titleText;
-            resultTitle.className = rankClass; 
-            resultTime.textContent = `Time: ${timeStr}`;
-            resultDesc.textContent = descText;
-
-            saveData(starsEarned, starsEarned > 0, timeStr);
+            saveDailyData(stars);
         }
 
-        function saveData(stars, isSuccess, timeStr) {
-            let currentStars = parseInt(localStorage.getItem('routine_stars_v3') || "0");
-            currentStars += stars;
-            localStorage.setItem('routine_stars_v3', currentStars);
-            starCountEl.textContent = currentStars;
-
-            const now = new Date();
-            const dateStr = `${now.getMonth()+1}/${now.getDate()}`;
-            const record = { date: dateStr, time: timeStr, stars: stars };
-            let history = JSON.parse(localStorage.getItem('routine_history_v3') || "[]");
-            history.unshift(record);
-            if(history.length > 5) history = history.slice(0, 5); 
-            localStorage.setItem('routine_history_v3', JSON.stringify(history));
-            renderHistory();
+        // 資料儲存 (Local Storage)
+        function saveDailyData(stars) {
+            const today = new Date();
+            const dateKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+            
+            let data = JSON.parse(localStorage.getItem('hunter_data') || "{}");
+            
+            // 記錄今天
+            data[dateKey] = { stars: stars };
+            
+            localStorage.setItem('hunter_data', JSON.stringify(data));
+            loadData(); // Refresh UI
         }
 
         function loadData() {
-            const currentStars = parseInt(localStorage.getItem('routine_stars_v3') || "0");
-            starCountEl.textContent = currentStars;
-            renderHistory();
-        }
+            const data = JSON.parse(localStorage.getItem('hunter_data') || "{}");
+            const now = new Date();
+            
+            // 1. 計算總星星 (Total)
+            let total = 0;
+            Object.values(data).forEach(day => total += (day.stars || 0));
+            totalStarsEl.textContent = total;
 
-        function renderHistory() {
-            const history = JSON.parse(localStorage.getItem('routine_history_v3') || "[]");
-            historyList.innerHTML = "";
-            if(history.length === 0) {
-                historyList.innerHTML = "<li style='text-align:center; opacity:0.6;'>No records yet.</li>";
-                return;
+            // 2. 計算本週星星 (Weekly)
+            let weeklyTotal = 0;
+            const dayOfWeek = now.getDay(); // 0(Sun) - 6(Sat)
+            const sunday = new Date(now);
+            sunday.setDate(now.getDate() - dayOfWeek); // Go back to Sunday
+            
+            for (let i = 0; i < 7; i++) {
+                let d = new Date(sunday);
+                d.setDate(sunday.getDate() + i);
+                const k = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+                if (data[k]) weeklyTotal += data[k].stars;
             }
-            history.forEach(rec => {
-                const li = document.createElement('li');
-                li.className = 'history-item';
-                const starText = rec.stars > 0 ? `+${rec.stars}✨` : '-';
-                let colorStyle = "#777";
-                if(rec.stars >= 20) colorStyle = "#f1c40f"; 
-                else if(rec.stars >= 15) colorStyle = "#e74c3c"; 
-                else if(rec.stars >= 10) colorStyle = "#3498db"; 
+            weeklyScoreEl.textContent = weeklyTotal + " ⭐";
 
-                li.innerHTML = `<span>${rec.date} ${rec.time}</span> <span style="font-weight:bold; color:${colorStyle};">${starText}</span>`;
-                historyList.appendChild(li);
-            });
+            // 3. 繪製月曆
+            renderCalendar(data);
         }
 
-        function clearHistory() {
-            if(confirm("Clear logs?")) {
-                localStorage.removeItem('routine_history_v3');
-                localStorage.removeItem('routine_stars_v3');
-                loadData();
+        function renderCalendar(data) {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            
+            document.getElementById('cal-month-title').textContent = `${now.toLocaleString('default', { month: 'long' })} ${year}`;
+            
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDayIndex = new Date(year, month, 1).getDay(); // 0 is Sunday
+            
+            let html = '';
+            // Empty slots
+            for(let i=0; i<firstDayIndex; i++) html += `<div></div>`;
+            
+            // Days
+            for(let d=1; d<=daysInMonth; d++) {
+                const k = `${year}-${month + 1}-${d}`;
+                const record = data[k];
+                const isToday = (d === now.getDate());
+                
+                let cls = 'cal-day';
+                let content = d;
+                
+                if (isToday) cls += ' today';
+                if (record) {
+                    if (record.stars >= 20) {
+                        cls += ' perfect'; // S Rank
+                        content = `${d}<div class="cal-star-num">👑${record.stars}</div>`;
+                    } else {
+                        cls += ' done';
+                        content = `${d}<div class="cal-star-num">⭐${record.stars}</div>`;
+                    }
+                }
+                
+                html += `<div class="${cls}">${content}</div>`;
+            }
+            calGrid.innerHTML = html;
+        }
+
+        function clearData() {
+            if(confirm("Delete all history?")) {
+                localStorage.removeItem('hunter_data');
+                location.reload();
             }
         }
 
+        // 紙花特效
         function startConfetti() {
             const canvas = document.getElementById('confetti-canvas');
             canvas.style.display = 'block';
@@ -322,7 +479,7 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             const pieces = [];
-            const colors = ['#9b59b6', '#ff79c6', '#bd93f9', '#f1c40f', '#ffffff'];
+            const colors = ['#9b59b6', '#ff79c6', '#f1c40f', '#8be9fd'];
             for (let i = 0; i < 150; i++) {
                 pieces.push({
                     x: Math.random() * canvas.width,
@@ -330,7 +487,7 @@
                     color: colors[Math.floor(Math.random() * colors.length)],
                     size: Math.random() * 8 + 4,
                     speed: Math.random() * 4 + 2,
-                    angle: Math.random() * 6
+                    rotation: Math.random() * 360
                 });
             }
             function draw() {
@@ -338,12 +495,11 @@
                 pieces.forEach(p => {
                     ctx.save();
                     ctx.translate(p.x, p.y);
-                    ctx.rotate(p.angle);
+                    ctx.rotate(p.rotation * Math.PI / 180);
                     ctx.fillStyle = p.color;
                     ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
                     ctx.restore();
-                    p.y += p.speed;
-                    p.angle += 0.1;
+                    p.y += p.speed; p.rotation += p.speed * 2;
                     if (p.y > canvas.height) p.y = -20;
                 });
                 requestAnimationFrame(draw);
