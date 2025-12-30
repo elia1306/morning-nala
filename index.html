@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Hi Nala</title>
+    <title>Good Morning Nala</title>
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Barriecito&family=Caveat:wght@400;700&family=Fredoka:wght@400;600&family=Patrick+Hand&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -20,8 +20,8 @@
             --gold: #f1c40f;
             
             /* 預設字型變數 */
-            --font-hand: 'Caveat', cursive;  /* 預設內文 */
-            --font-title: 'Barriecito', cursive; /* 標題固定用這款愛心字體，超可愛！ */
+            --font-hand: 'Caveat', cursive;  /* 內文與按鈕 */
+            --font-title: 'Barriecito', cursive; /* 標題固定 */
         }
 
         body {
@@ -37,11 +37,10 @@
 
             /* === 背景設定 === */
             background-color: var(--bg-color);
-            /* 預設幾何圖形背景 */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.15) 0%, transparent 20%);
-            /* background-image: url('bg.png'); */ /* 若要自訂背景請解開這行 */
+            /* background-image: url('bg.png'); */ /* 自訂背景請解開這行 */
             
             background-size: cover;
             background-position: center;
@@ -51,41 +50,49 @@
 
         header { 
             width: 100%; max-width: 500px;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; flex-direction: column; align-items: center;
             margin-bottom: 20px;
         }
 
         h1 {
-            font-family: var(--font-title); /* 標題使用 Barriecito */
-            font-size: 3rem; /* 稍微加大一點因為這款字型比較細 */
+            font-family: var(--font-title);
+            font-size: 3.2rem;
             color: var(--primary-dark);
-            text-shadow: 2px 2px 0px var(--neon-pink);
-            margin: 0;
+            text-shadow: 3px 3px 0px var(--neon-pink);
+            margin: 0 0 10px 0;
             letter-spacing: 1px;
             line-height: 1.1;
+            text-align: center;
         }
 
-        .clock-badge {
+        /* 📊 新增：狀態列 (星星與時鐘並排) */
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .stat-item {
             background: white;
-            padding: 5px 15px;
+            padding: 8px 18px;
             border-radius: 20px;
-            font-family: 'Fredoka', sans-serif; /* 時鐘保持易讀的圓體 */
+            font-family: 'Fredoka', sans-serif; /* 數字保持易讀 */
             font-size: 1.2rem;
-            color: var(--primary);
-            border: 2px solid var(--neon-pink);
-            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
         }
 
-        .total-stars-display {
-            background: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            display: flex; align-items: center; gap: 5px;
+        /* 星星樣式 */
+        .stat-stars {
             border: 2px solid var(--gold);
-            font-family: 'Fredoka', sans-serif;
             color: #f39c12;
-            font-size: 1.1rem;
-            margin-top: 5px;
+        }
+
+        /* 時鐘樣式 */
+        .stat-clock {
+            border: 2px solid var(--neon-pink);
+            color: var(--primary);
         }
 
         .card {
@@ -103,7 +110,7 @@
         .task-list { list-style: none; padding: 0; margin: 0; }
 
         .task-item {
-            font-size: 1.6rem; /* 因為 Caveat 比較小，稍微加大字號 */
+            font-size: 1.6rem;
             margin-bottom: 15px;
             padding: 8px;
             border-bottom: 2px dashed #ddd;
@@ -136,7 +143,8 @@
         .btn-ready {
             background: linear-gradient(135deg, var(--primary), var(--neon-pink));
             color: white;
-            font-family: var(--font-title);
+            /* [修改] 這裡改成使用變數，所以會跟著選單改變 */
+            font-family: var(--font-hand); 
             font-size: 2.2rem;
             border: none;
             padding: 15px 0;
@@ -197,7 +205,6 @@
         }
         .reset-link { color: #ccc; text-decoration: underline; cursor: pointer; font-size: 0.9rem; font-family: sans-serif; }
         
-        /* 字型選單樣式 */
         .font-selector {
             padding: 8px 12px;
             border: 2px solid var(--primary);
@@ -242,14 +249,18 @@
 <body>
 
     <header>
-        <div>
-            <h1>Good Morning Nala</h1>
-            <div class="total-stars-display">
+        <h1>Good Morning Nala</h1>
+        
+        <div class="status-bar">
+            <div class="stat-item stat-stars">
                 <span>⭐</span>
                 <span id="total-stars">0</span>
             </div>
+            <div class="stat-item stat-clock">
+                <span>⏰</span>
+                <span id="clock">--:--</span>
+            </div>
         </div>
-        <div class="clock-badge" id="clock">--:--</div>
     </header>
 
     <div class="card" id="main-card">
@@ -336,7 +347,7 @@
         fontSelector.addEventListener('change', (e) => {
             const newFont = e.target.value;
             document.documentElement.style.setProperty('--font-hand', newFont);
-            localStorage.setItem('hunter_font_v2', newFont); // 使用新 key 避免衝突
+            localStorage.setItem('hunter_font_v2', newFont); 
         });
 
         function loadFont() {
