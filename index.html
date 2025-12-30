@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Hi Nala</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Coming+Soon&family=Fredoka:wght@400;600&family=Indie+Flower&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Barriecito&family=Caveat:wght@400;700&family=Fredoka:wght@400;600&family=Patrick+Hand&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -19,14 +19,13 @@
             --text-color: #2c3e50;
             --gold: #f1c40f;
             
-            /* 可變動的主字型變數 */
-            --font-hand: 'Indie Flower', cursive; 
-            /* 標題固定用 Bangers */
-            --font-title: 'Bangers', cursive;
+            /* 預設字型變數 */
+            --font-hand: 'Caveat', cursive;  /* 預設內文 */
+            --font-title: 'Barriecito', cursive; /* 標題固定用這款愛心字體，超可愛！ */
         }
 
         body {
-            font-family: var(--font-hand); /* 使用變數 */
+            font-family: var(--font-hand);
             color: var(--text-color);
             margin: 0;
             padding: 20px;
@@ -36,13 +35,13 @@
             min-height: 100vh;
             padding-bottom: calc(20px + env(safe-area-inset-bottom));
 
-            /* === 背景設定區 === */
+            /* === 背景設定 === */
             background-color: var(--bg-color);
+            /* 預設幾何圖形背景 */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(155, 89, 182, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.15) 0%, transparent 20%);
-            /* 若要用自己的圖，請取消下行註解並改檔名 */
-            /* background-image: url('bg.png'); */
+            /* background-image: url('bg.png'); */ /* 若要自訂背景請解開這行 */
             
             background-size: cover;
             background-position: center;
@@ -57,19 +56,20 @@
         }
 
         h1 {
-            font-family: var(--font-title);
-            font-size: 2.5rem;
+            font-family: var(--font-title); /* 標題使用 Barriecito */
+            font-size: 3rem; /* 稍微加大一點因為這款字型比較細 */
             color: var(--primary-dark);
             text-shadow: 2px 2px 0px var(--neon-pink);
             margin: 0;
             letter-spacing: 1px;
+            line-height: 1.1;
         }
 
         .clock-badge {
             background: white;
             padding: 5px 15px;
             border-radius: 20px;
-            font-family: 'Fredoka', sans-serif; /* 時鐘保持易讀 */
+            font-family: 'Fredoka', sans-serif; /* 時鐘保持易讀的圓體 */
             font-size: 1.2rem;
             color: var(--primary);
             border: 2px solid var(--neon-pink);
@@ -103,7 +103,7 @@
         .task-list { list-style: none; padding: 0; margin: 0; }
 
         .task-item {
-            font-size: 1.5rem;
+            font-size: 1.6rem; /* 因為 Caveat 比較小，稍微加大字號 */
             margin-bottom: 15px;
             padding: 8px;
             border-bottom: 2px dashed #ddd;
@@ -137,7 +137,7 @@
             background: linear-gradient(135deg, var(--primary), var(--neon-pink));
             color: white;
             font-family: var(--font-title);
-            font-size: 2rem;
+            font-size: 2.2rem;
             border: none;
             padding: 15px 0;
             width: 100%; max-width: 500px;
@@ -150,7 +150,6 @@
         }
         .btn-ready:active { transform: translateY(6px); box-shadow: 0 0 0; }
 
-        /* 週統計 */
         .weekly-stats {
             width: 100%; max-width: 500px;
             background: white;
@@ -161,10 +160,9 @@
             box-shadow: 4px 4px 0 rgba(139, 233, 253, 0.5);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .weekly-label { font-weight: bold; color: #555; font-size: 1.1rem; }
-        .weekly-value { font-family: var(--font-title); font-size: 2rem; color: var(--primary); }
+        .weekly-label { font-weight: bold; color: #555; font-size: 1.2rem; }
+        .weekly-value { font-family: var(--font-title); font-size: 2.2rem; color: var(--primary); }
 
-        /* 月曆 */
         .calendar-container {
             width: 100%; max-width: 500px;
             background: white;
@@ -173,7 +171,7 @@
             margin-top: 20px;
             border: 2px solid #ddd;
         }
-        .cal-header { text-align: center; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-dark); }
+        .cal-header { text-align: center; font-weight: bold; font-size: 1.3rem; margin-bottom: 15px; color: var(--primary-dark); }
         .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         
         .cal-day {
@@ -182,7 +180,7 @@
             align-items: center; justify-content: center;
             background: #f9f9f9;
             border-radius: 8px;
-            font-size: 0.9rem; color: #aaa;
+            font-size: 1rem; color: #aaa;
             font-family: 'Fredoka', sans-serif;
         }
         
@@ -192,24 +190,24 @@
         .cal-star-num { font-size: 0.7rem; margin-top: 2px; }
         .cal-day.today { border: 2px dashed var(--primary); }
 
-        /* Footer 工具列 */
         .footer-tools { 
             margin-top: 30px; 
             width: 100%; max-width: 500px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .reset-link { color: #ccc; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
+        .reset-link { color: #ccc; text-decoration: underline; cursor: pointer; font-size: 0.9rem; font-family: sans-serif; }
         
         /* 字型選單樣式 */
         .font-selector {
-            padding: 5px 10px;
-            border: 1px solid var(--primary);
-            border-radius: 10px;
+            padding: 8px 12px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
             background: white;
             color: var(--primary-dark);
             font-family: var(--font-hand);
-            font-size: 1rem;
+            font-size: 1.1rem;
             outline: none;
+            cursor: pointer;
         }
 
         .result-overlay {
@@ -245,7 +243,7 @@
 
     <header>
         <div>
-            <h1>🩷 Good Morning Nala 🩷</h1>
+            <h1>Good Morning Nala</h1>
             <div class="total-stars-display">
                 <span>⭐</span>
                 <span id="total-stars">0</span>
@@ -293,11 +291,11 @@
 
     <div class="footer-tools">
         <select id="font-selector" class="font-selector">
-            <option value="'Indie Flower', cursive">Indie Flower (Cute)</option>
+            <option value="'Caveat', cursive">Caveat (Default)</option>
+            <option value="'Barriecito', cursive">Barriecito (Hearts!)</option>
+            <option value="'Patrick Hand', cursive">Patrick Hand (Marker)</option>
             <option value="'Fredoka', sans-serif">Fredoka (Round)</option>
-            <option value="'Patrick Hand', cursive">Patrick Hand (Neat)</option>
-            <option value="'Architects Daughter', cursive">Architect (Sketch)</option>
-            <option value="'Coming Soon', cursive">Coming Soon (Pen)</option>
+            <option value="'Amatic SC', cursive">Amatic SC (Tall)</option>
         </select>
 
         <span class="reset-link" onclick="clearData()">Reset Data</span>
@@ -338,11 +336,11 @@
         fontSelector.addEventListener('change', (e) => {
             const newFont = e.target.value;
             document.documentElement.style.setProperty('--font-hand', newFont);
-            localStorage.setItem('hunter_font', newFont);
+            localStorage.setItem('hunter_font_v2', newFont); // 使用新 key 避免衝突
         });
 
         function loadFont() {
-            const savedFont = localStorage.getItem('hunter_font');
+            const savedFont = localStorage.getItem('hunter_font_v2');
             if (savedFont) {
                 document.documentElement.style.setProperty('--font-hand', savedFont);
                 fontSelector.value = savedFont;
