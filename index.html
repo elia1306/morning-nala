@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>K-Pop Hunter Routine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;600&family=Indie+Flower&family=Patrick+Hand&family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --primary: #9b59b6; 
+            --primary-dark: #7b1fa2;
+            --neon-pink: #ff79c6; 
+            --neon-purple: #bd93f9; 
+            --bg-color: #f8f0fc; 
+            --text-color: #4a235a;
+            --accent: #f1c40f; 
+            --current-font: 'Indie Flower', cursive;
+        }
+
+        body {
+            font-family: var(--current-font);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 10% 20%, rgba(189, 147, 249, 0.1) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.1) 0%, transparent 20%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            /* 確保底部內容不會被 iPhone 的 Home Bar 擋住 */
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+            transition: font-family 0.3s ease;
+        }
+
+        .header-container { width: 100%; max-width: 450px; display: flex; flex-direction: column; align-items: center; margin-bottom: 10px; }
+        .hunter-banner-svg { width: 80%; height: auto; margin-bottom: 5px; filter: drop-shadow(0 4px 2px rgba(189, 147, 249, 0.3)); }
+        .header-controls { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-top: 5px; gap: 10px; }
+        
+        h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); margin: 0; color: var(--primary-dark); text-shadow: 2px 2px 0px var(--neon-pink); text-align: center; line-height: 1.2; }
+        .clock-badge { background: white; padding: 5px 10px; border-radius: 20px; font-size: 1rem; border: 2px solid var(--neon-purple); font-weight: bold; white-space: nowrap; }
+        .font-selector { padding: 5px; border-radius: 12px; border: 2px solid var(--primary); background: white; color: var(--primary-dark); font-family: var(--current-font); font-size: 0.9rem; max-width: 60%; }
+
+        .stars-display {
+            background: white; padding: 5px 15px; border-radius: 50px; font-size: 1.5rem; margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px; border: 2px solid var(--neon-pink);
+        }
+        .star-icon { color: var(--accent); }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9); width: 100%; max-width: 450px; border-radius: 15px; padding: 15px; margin-bottom: 20px;
+            border: 2px solid var(--neon-purple); box-shadow: 4px 4px 0px rgba(155, 89, 182, 0.2); backdrop-filter: blur(5px);
+        }
+
+        .task-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .task-item { font-size: clamp(1.1rem, 4vw, 1.4rem); margin-bottom: 10px; padding: 10px 5px; border-bottom: 1px dashed var(--primary-light); display: flex; align-items: center; cursor: pointer; transition: all 0.2s; line-height: 1.3; }
+        .task-item:last-child { border-bottom: none; }
+        .task-item.special-tuesday { background-color: #e8f4fd; border-radius: 10px; border-bottom: none; color: #2980b9; }
+
+        .custom-checkbox { width: 22px; height: 22px; border: 2px solid var(--primary); border-radius: 50%; margin-right: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .task-item.checked { color: #b39ddb; text-decoration: line-through; }
+        .task-item.checked .custom-checkbox { background-color: var(--primary); }
+        .task-item.checked .custom-checkbox::after { content: '✔'; color: white; font-size: 0.9rem; }
+
+        .btn-ready {
+            background: linear-gradient(45deg, var(--primary), var(--neon-pink)); color: white; font-family: var(--current-font); font-size: 1.5rem;
+            border: none; padding: 12px 0; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 0 var(--primary-dark);
+            width: 100%; max-width: 450px; margin-top: 5px;
+        }
+        .btn-ready:active { transform: translateY(4px); box-shadow: 0 0 0 var(--primary-dark); }
+
+        /* 已移除 .footer-mascot-svg 樣式 */
+
+        .history-container { margin-top: 20px; width: 100%; max-width: 450px; font-size: 1rem; }
+        .history-title { color: var(--primary-dark); border-bottom: 2px solid var(--neon-pink); margin-bottom: 8px; }
+        .history-list { list-style: none; padding: 0; }
+        .history-item { display: flex; justify-content: space-between; background: rgba(255,255,255,0.6); padding: 8px 12px; margin-bottom: 5px; border-radius: 8px; color: #777; font-size: 0.9rem; }
+        .clear-link { color: var(--neon-purple); font-size: 0.85rem; text-decoration: underline; cursor: pointer; display: block; margin-top: 10px; text-align: center;}
+        
+        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; display: none; }
+        .result-message { text-align: center; display: none; }
+        
+        .rank-s { color: #f1c40f; text-shadow: 1px 1px 0 #e67e22; } /* Gold */
+        .rank-a { color: #e74c3c; } /* Red */
+        .rank-b { color: #3498db; } /* Blue */
+        .rank-c { color: #7f8c8d; } /* Gray */
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <svg class="hunter-banner-svg" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#ff79c6;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <path d="M20,40 Q50,10 100,30 Q130,5 150,35 Q170,5 200,30 Q250,10 280,40" stroke="url(#grad1)" stroke-width="3" fill="none" opacity="0.6"/>
+            <circle cx="150" cy="40" r="25" fill="#f8f0fc" stroke="url(#grad1)" stroke-width="4"/>
+            <path d="M150,15 L150,65" stroke="url(#grad1)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M135,40 L165,40" stroke="url(#grad1)" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="150" cy="40" r="10" fill="#ff79c6"/>
+            <text x="142" y="47" font-family="Arial" font-size="20" fill="white">⚡</text>
+            <text x="80" y="60" font-size="20">🎵</text>
+            <text x="220" y="25" font-size="20">✨</text>
+        </svg>
+
+        <h1>Hunter Routine</h1>
+
+        <div class="header-controls">
+            <select id="font-selector" class="font-selector">
+                <option value="'Indie Flower', cursive">Indie</option>
+                <option value="'Fredoka', sans-serif">Fredoka</option>
+                <option value="'Bangers', cursive">Bangers</option>
+                <option value="'Patrick Hand', cursive">Patrick</option>
+                <option value="'Satisfy', cursive">Satisfy</option>
+            </select>
+            <div class="clock-badge" id="clock">--:--</div>
+        </div>
+    </div>
+
+    <div class="stars-display">
+        <span class="star-icon">✨</span>
+        <span id="star-count">0</span>
+    </div>
+
+    <div class="card" id="main-card">
+        <ul class="task-list" id="task-list-container">
+            <li class="task-item" onclick="toggleCheck(this)">
+                <div class="custom-checkbox"></div>
+                Toilet, Brush Teeth, Change 🛁
+            </li>
+            <li class="task-item" onclick="toggleCheck(this)">
+                <div class="custom-checkbox"></div>
+                Breakfast, Backpack, Lunch Bag 🎒
+            </li>
+            
+            <li class="task-item" onclick="toggleCheck(this)">
+                <div class="custom-checkbox"></div>
+                Chinese Medicine 🍵
+            </li>
+            <li class="task-item" onclick="toggleCheck(this)">
+                <div class="custom-checkbox"></div>
+                Everything is ready! 💖
+            </li>
+        </ul>
+    </div>
+
+    <div class="card result-message" id="result-card">
+        <h2 id="result-title" style="font-size: 2rem; margin:10px 0;"></h2>
+        <p id="result-time" style="font-size: 1.2rem; color:#888;"></p>
+        <p id="result-desc" style="font-size: 1.1rem; margin-top:15px; font-weight:bold;"></p>
+        <button class="btn-ready" onclick="location.reload()" style="font-size: 1.3rem; margin-top:15px; background: linear-gradient(45deg, #bd93f9, #9b59b6);">Reload System</button>
+    </div>
+
+    <button class="btn-ready" id="action-btn" onclick="finishRoutine()">I'm Ready!</button>
+
+    <div class="history-container">
+        <div class="history-title">Mission Logs</div>
+        <ul class="history-list" id="history-list"></ul>
+        <div class="clear-link" onclick="clearHistory()">Clear Logs</div>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script>
+        const clockEl = document.getElementById('clock');
+        const starCountEl = document.getElementById('star-count');
+        const mainCard = document.getElementById('main-card');
+        const resultCard = document.getElementById('result-card');
+        const resultTitle = document.getElementById('result-title');
+        const resultTime = document.getElementById('result-time');
+        const resultDesc = document.getElementById('result-desc');
+        const actionBtn = document.getElementById('action-btn');
+        const historyList = document.getElementById('history-list');
+        const fontSelector = document.getElementById('font-selector');
+        const taskListContainer = document.getElementById('task-list-container');
+
+        loadData();
+        checkTuesday();
+        initFontSwitcher();
+        
+        setInterval(() => {
+            const now = new Date();
+            clockEl.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' });
+        }, 1000);
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+        }
+
+        function checkTuesday() {
+            const now = new Date();
+            const dayOfWeek = now.getDay(); 
+            if (dayOfWeek === 2) { 
+                const tuesdayItem = document.createElement('li');
+                tuesdayItem.className = 'task-item special-tuesday';
+                tuesdayItem.setAttribute('onclick', 'toggleCheck(this)');
+                tuesdayItem.innerHTML = `<div class="custom-checkbox"></div>Swimsuit 🩱 (It's Tuesday!)`;
+                const medicineItem = taskListContainer.children[2];
+                taskListContainer.insertBefore(tuesdayItem, medicineItem);
+            }
+        }
+
+        function initFontSwitcher() {
+            const savedFont = localStorage.getItem('hunter_font') || "'Indie Flower', cursive";
+            document.documentElement.style.setProperty('--current-font', savedFont);
+            fontSelector.value = savedFont;
+            fontSelector.addEventListener('change', (e) => {
+                const selectedFont = e.target.value;
+                document.documentElement.style.setProperty('--current-font', selectedFont);
+                localStorage.setItem('hunter_font', selectedFont);
+            });
+        }
+
+        function finishRoutine() {
+            const now = new Date();
+            const target645 = new Date(); target645.setHours(6, 45, 0); 
+            const target650 = new Date(); target650.setHours(6, 50, 0);
+            const target651 = new Date(); target651.setHours(6, 51, 0);
+
+            const timeStr = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' });
+            let starsEarned = 0;
+            let rankClass = "";
+            let titleText = "";
+            let descText = "";
+
+            if (now < target645) {
+                starsEarned = 20;
+                titleText = "GODLIKE! (S+) ⚡️";
+                rankClass = "rank-s";
+                descText = "+20 Stars! Unstoppable!";
+                startConfetti();
+            } else if (now >= target645 && now < target650) {
+                starsEarned = 15;
+                titleText = "Amazing! (A) 🔥";
+                rankClass = "rank-a";
+                descText = "+15 Stars! Fast!";
+                startConfetti();
+            } else if (now >= target650 && now < target651) {
+                starsEarned = 10;
+                titleText = "Great! (B) ✨";
+                rankClass = "rank-b";
+                descText = "+10 Stars! You made it!";
+                startConfetti();
+            } else {
+                starsEarned = 0;
+                titleText = "Mission Over (C) 🛡️";
+                rankClass = "rank-c";
+                descText = "Too late... 0 Stars. Try again tomorrow!";
+            }
+            
+            mainCard.style.display = 'none';
+            actionBtn.style.display = 'none';
+            resultCard.style.display = 'block';
+
+            resultTitle.textContent = titleText;
+            resultTitle.className = rankClass; 
+            resultTime.textContent = `Time: ${timeStr}`;
+            resultDesc.textContent = descText;
+
+            saveData(starsEarned, starsEarned > 0, timeStr);
+        }
+
+        function saveData(stars, isSuccess, timeStr) {
+            let currentStars = parseInt(localStorage.getItem('routine_stars_v3') || "0");
+            currentStars += stars;
+            localStorage.setItem('routine_stars_v3', currentStars);
+            starCountEl.textContent = currentStars;
+
+            const now = new Date();
+            const dateStr = `${now.getMonth()+1}/${now.getDate()}`;
+            const record = { date: dateStr, time: timeStr, stars: stars };
+            let history = JSON.parse(localStorage.getItem('routine_history_v3') || "[]");
+            history.unshift(record);
+            if(history.length > 5) history = history.slice(0, 5); 
+            localStorage.setItem('routine_history_v3', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function loadData() {
+            const currentStars = parseInt(localStorage.getItem('routine_stars_v3') || "0");
+            starCountEl.textContent = currentStars;
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('routine_history_v3') || "[]");
+            historyList.innerHTML = "";
+            if(history.length === 0) {
+                historyList.innerHTML = "<li style='text-align:center; opacity:0.6;'>No records yet.</li>";
+                return;
+            }
+            history.forEach(rec => {
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                const starText = rec.stars > 0 ? `+${rec.stars}✨` : '-';
+                let colorStyle = "#777";
+                if(rec.stars >= 20) colorStyle = "#f1c40f"; 
+                else if(rec.stars >= 15) colorStyle = "#e74c3c"; 
+                else if(rec.stars >= 10) colorStyle = "#3498db"; 
+
+                li.innerHTML = `<span>${rec.date} ${rec.time}</span> <span style="font-weight:bold; color:${colorStyle};">${starText}</span>`;
+                historyList.appendChild(li);
+            });
+        }
+
+        function clearHistory() {
+            if(confirm("Clear logs?")) {
+                localStorage.removeItem('routine_history_v3');
+                localStorage.removeItem('routine_stars_v3');
+                loadData();
+            }
+        }
+
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.style.display = 'block';
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const pieces = [];
+            const colors = ['#9b59b6', '#ff79c6', '#bd93f9', '#f1c40f', '#ffffff'];
+            for (let i = 0; i < 150; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 8 + 4,
+                    speed: Math.random() * 4 + 2,
+                    angle: Math.random() * 6
+                });
+            }
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                pieces.forEach(p => {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.angle);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                    ctx.restore();
+                    p.y += p.speed;
+                    p.angle += 0.1;
+                    if (p.y > canvas.height) p.y = -20;
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+            setTimeout(() => canvas.style.display = 'none', 5000);
+        }
+    </script>
+</body>
+</html>
